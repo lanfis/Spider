@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body bgcolor="#E6E6FA">
+<h1>
+Employee Login</h1>
+<button onclick="myFunction()"name ="employeeLogin">Continue</button>
+
+<p id="msg">
+</p>
+<script>
+function myFunction() {
+ var login = prompt("Please re-enter your name", "xxxxxx");
+ var passwd = prompt("Please re-enter your passwd", "xxxxxx");
+ 
+ if (login != null && passwd != null) {
+ document.getElementById("msg").innerHTML =
+ "Welcome " + login + "!! How can I help you?\n" + "Your passwd is " + passwd + "!!";
+ alert("You have logged in successfully !!")
+ }
+}
+</script>
+</body>
+</html>
+</html>
