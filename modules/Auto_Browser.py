@@ -32,8 +32,10 @@ class Auto_Browser:
             print(self.console_formatter_.INFO(self.program_name_, msg))
         source_pre = self.browser.get_source()
         self.browser.find_tag_name('body')
+        self.page_end()
         for i in range(browse_counts):
-            self.page_down()
+            self.page_end()
+            #self.page_down()
             self.browser.wait(random.uniform(browse_delay_min, browse_delay_max))
             if source_pre == self.browser.get_source():
                 buffer_count = buffer_count - 1
@@ -49,6 +51,9 @@ class Auto_Browser:
 
     def click(self, text, is_contact=True):
         return self.browser.click_link(text, is_contact)
+
+    def page_end(self):
+        self.browser.send_keys([Web_Browser_Driver_Keys().END])
 
     def page_down(self):
         self.browser.send_keys([Web_Browser_Driver_Keys().PAGE_DOWN])

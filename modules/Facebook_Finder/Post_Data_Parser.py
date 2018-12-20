@@ -34,21 +34,30 @@ class Post_Data_Parser:
         post_imgs = []
         #post_bravo_list = None
         for post_data in post_lists:
-            post_time = post_data.find("abbr")['title']
-            post_datas[post_time] = {}
+            #if post_data.find("abbr") != None:
+            try:
+                post_time = post_data.find("abbr")['title']
+            except:
+                pass
+            else:
+                post_datas[post_time] = {}
 
             post_article_source = post_data.find("div", {'data-ad-preview' : 'message'})
             if post_article_source != None:
-                post_article_contents = post_article_source.find("p").get_text()
-                '''
-                post_article_content = ""
-                for c in post_article_contents:
-                    if c == "<br>":
-                        post_article_content += "\n"
-                    elif isinstance(c, str):
-                        post_article_content += c
-                '''
-                post_datas[post_time]['article'] = post_article_contents
+                try:
+                    post_article_contents = post_article_source.find("p").get_text()
+                    '''
+                    post_article_content = ""
+                    for c in post_article_contents:
+                        if c == "<br>":
+                            post_article_content += "\n"
+                        elif isinstance(c, str):
+                            post_article_content += c
+                    '''
+                except:
+                    pass
+                else:
+                    post_datas[post_time]['article'] = post_article_contents
 
             post_reply_source = post_data.find_all("div", {'class' : 'UFICommentContentBlock'})
             if post_reply_source != None:
@@ -66,7 +75,7 @@ class Post_Data_Parser:
                 post_imgs = []
                 for post_img in post_img_src_lists:
                     post_img_src = post_img['src']
-                    post_img_fb_detect = post_img['alt']
+                    post_img_fb_detect = post_img.get('aria-label')
                     post_imgs.append({'src' : post_img_src, 'fb_detect' : post_img_fb_detect})
                 post_datas[post_time]['img'] = post_imgs
 

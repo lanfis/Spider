@@ -32,3 +32,5 @@
 *.app
 
 #darknet/yolo\.weights
+*.json
+*.pyc
