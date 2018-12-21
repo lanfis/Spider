@@ -159,7 +159,7 @@ class Facebook_Finder:
                 print(self.console_formatter_.WARN(self.program_name_, msg))
             return None
         self.link(self.page_links[self.headline_post_locate]['href'])
-        self.auto_browser.auto_page_down(browse_counts)
+        self.auto_browser.auto_end(browse_counts=browse_counts)
         post_lists = self.post_data_parser.add_source(self.browser.get_source())
 
         for post_list in post_lists:
@@ -186,7 +186,7 @@ class Facebook_Finder:
                 print(self.console_formatter_.WARN(self.program_name_, msg))
             return None
         self.link(self.page_links[self.headline_friends_locate]['href'])
-        self.auto_browser.auto_page_down(browse_counts)
+        self.auto_browser.auto_end(browse_counts=browse_counts)
         friends_lists = self.friend_link_parser.add_source(self.browser.get_source())
 
         for href_link in friends_lists:
