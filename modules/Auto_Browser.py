@@ -26,16 +26,34 @@ class Auto_Browser:
     program_name_ = __name__
     console_formatter_  = Console_Formatter()
 
-    def auto_page_down(self, browse_counts=4, browse_delay_min=0.5, browse_delay_max=1.5, buffer_count=3):
+    def auto_end(self, **kargs):
+        if self.is_info :
+            msg = "Auto end ...";
+            print(self.console_formatter_.INFO(self.program_name_, msg))
+
+        self.auto_function(self.page_end, **kargs)
+        if self.is_info :
+            msg = "Auto end done !";
+            print(self.console_formatter_.INFO(self.program_name_, msg))
+        return
+
+    def auto_page_down(self, **kargs):
         if self.is_info :
             msg = "Auto page down ...";
             print(self.console_formatter_.INFO(self.program_name_, msg))
+
+        self.auto_function(self.page_down, **kargs)
+        if self.is_info :
+            msg = "Auto page down done !";
+            print(self.console_formatter_.INFO(self.program_name_, msg))
+        return
+
+    def auto_function(self, func, browse_counts=4, browse_delay_min=0.5, browse_delay_max=1.5, buffer_count=3):
         source_pre = self.browser.get_source()
         self.browser.find_tag_name('body')
-        self.page_end()
+        func()
         for i in range(browse_counts):
-            self.page_end()
-            #self.page_down()
+            func()
             self.browser.wait(random.uniform(browse_delay_min, browse_delay_max))
             if source_pre == self.browser.get_source():
                 buffer_count = buffer_count - 1
@@ -44,9 +62,6 @@ class Auto_Browser:
             else:
                 source_pre = self.browser.get_source()
                 buffer_count = buffer_count
-        if self.is_info :
-            msg = "Auto page down done !";
-            print(self.console_formatter_.INFO(self.program_name_, msg))
         return
 
     def click(self, text, is_contact=True):
