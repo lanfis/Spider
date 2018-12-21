@@ -83,4 +83,4 @@ class Post_Data_Parser:
         return post_datas
 
     def get_lists(self):
-        return self.friend_link_lists
+        return self.post_data_lists

@@ -28,6 +28,18 @@ class User_Information_Database:
     program_name_ = __name__
     console_formatter_  = Console_Formatter()
 
+    def get_user(self, user_link):
+        if user_link in self.database:
+            if self.is_info :
+                msg = "Find user link : {} ! Returning user infomation ...".format(user_link)
+                print(self.console_formatter_.DEBUG(self.program_name_, msg))
+            return self.database[user_link]
+        else:
+            if self.is_info :
+                msg = "Cannot find user link : {} !".format(user_link)
+                print(self.console_formatter_.WARN(self.program_name_, msg))
+            return None
+
     def add_user(self, user_link, user_name):
         if user_link == None or user_name == None:
             if self.is_info :
@@ -40,6 +52,22 @@ class User_Information_Database:
             print(self.console_formatter_.DEBUG(self.program_name_, msg))
         self.database[user_link] = {'name' : user_name}
         return True
+
+    def get_info(self, user_link, info_type):
+        user_info = self.get_user(user_link)
+        if user_info != None:
+            if info_type in user_info:
+                if self.is_info :
+                    msg = "Find information : {} ! Returning infomation data ...".format(info_type)
+                    print(self.console_formatter_.DEBUG(self.program_name_, msg))
+                return self.database[user_link][info_type]
+            else:
+                if self.is_info :
+                    msg = "Cannot find information : {} !".format(info_type)
+                    print(self.console_formatter_.WARN(self.program_name_, msg))
+                return None
+        else:
+            return None
 
     def add_info(self, user_link, info_type, info_data):
         if not user_link in self.database:

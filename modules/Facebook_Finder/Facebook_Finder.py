@@ -344,6 +344,7 @@ def main(**kwargs):
     search_user_list = ff.user_search("吳音寧")
     #ff.link("https://www.facebook.com/profile.php?id=100001277912128&__tn__=%2Cd-]-h-R&eid=ARBo_xeaJ8T0r8X6IQFxWM99sqIXjOpxCdTxL9g5s1dVhTKT1kJj44yQKvXMy1QNnx7pNQ6mK57MzBdk")
     #ff.link("https://www.facebook.com/profile.php?id=100022934512189")
+    ##ff.link("https://www.facebook.com/chen0817")
     #ff.link("https://www.facebook.com/groups/451357468329757/?jazoest=2651001208210110412052665652120821001147665108731081051021078111868715776110715210810852651197711411010566768910065586510012079120113814597119578010410472116896948114861065253116104979811212210612210649121104102881201047611210511111065")
     #ff.parse_personal_page()
     #ff.enter_personal_main_page()
