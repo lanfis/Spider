@@ -49,7 +49,7 @@ class User_Information_Database:
 
         if self.is_info :
             msg = "Adding user {} : {} ...".format(user_name, user_link)
-            print(self.console_formatter_.DEBUG(self.program_name_, msg))d
+            print(self.console_formatter_.DEBUG(self.program_name_, msg))
         self.database[user_link] = {'name' : user_name}
         return True
 
